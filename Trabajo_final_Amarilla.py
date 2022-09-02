@@ -1,10 +1,9 @@
 from tkinter import *
 import time
 
-
 root=Tk()
 root.title("SIGB")
-root.geometry("500x300")
+root.geometry("800x500")
 
 label1= Label (root, text="Bienvenido al Sistema de Gestión de Bumeran")
 label1.pack()
