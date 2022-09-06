@@ -11,8 +11,6 @@ label1.pack()
 boton2 = Button(root, text="Altas")
 boton2.pack()
 
-#oao
-
 boton5 = Button(root, text="cerra2", command=root.iconify)
 boton5.pack()
 root.mainloop()
