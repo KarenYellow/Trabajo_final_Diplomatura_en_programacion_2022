@@ -30,7 +30,7 @@ boton4 = Button(root, text="Reportes", bd=5, bg= "green")
 boton4.pack()
 
 #Salida del programa
-#boton5 = Button(root, text="cerra2", command=root.iconify)
-#boton5.pack()
+boton5 = Button(root, text="cerra2", bd=5, bg= "green", command=root.quit)
+boton5.pack()
 
 root.mainloop()
