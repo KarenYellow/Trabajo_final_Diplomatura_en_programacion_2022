@@ -8,10 +8,11 @@ import time
 root=Tk()
 root.title("SIGB - Sistema de Gestión de Bumeran ")
 root.geometry("800x500")
-
+root.resizable(0,0)
 #Mensaje inicial
 label1= Label (root, text="Bienvenido al Sistema de Gestión de Bumeran")
 label1.pack()
+
 #Botones a utilizar por el usuario:
 
 #Altas:
