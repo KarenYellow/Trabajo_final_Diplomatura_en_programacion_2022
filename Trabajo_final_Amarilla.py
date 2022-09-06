@@ -1,5 +1,7 @@
 #Trabajo final de la diplomatura en programación impulsado por la iniciativa "Mujeres Tech", en este trabajo se realizará un sistema de gestión de altas y bajas 
 #para un portal importante de busqueda de empleo.
+#Nombre: Karen Amarilla
+
 from tkinter import *
 import time
 #Interfaz gráfica, en este caso se utilizará la libreria Tkinter.
