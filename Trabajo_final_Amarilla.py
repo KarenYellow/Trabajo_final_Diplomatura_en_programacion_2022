@@ -6,8 +6,9 @@ from tkinter import *
 import time
 #Interfaz gráfica, en este caso se utilizará la libreria Tkinter.
 root=Tk()
+root.config(bg= "grey")
 root.title("SIGB - Sistema de Gestión de Bumeran ")
-root.geometry("800x500")
+root.geometry("400x250")
 root.resizable(0,0)
 #Mensaje inicial
 label1= Label (root, text="Bienvenido al Sistema de Gestión de Bumeran")
