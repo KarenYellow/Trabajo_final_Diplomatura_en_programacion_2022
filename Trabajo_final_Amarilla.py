@@ -15,20 +15,20 @@ label1.pack()
 #Botones a utilizar por el usuario:
 
 #Altas:
-boton2 = Button(root, text="Alta")
+boton2 = Button(root, text="Alta", bg= "green")
 boton2.pack()
 
 #Bajas:
-boton3 = Button(root, text="Baja")
+boton3 = Button(root, text="Baja", bg= "green")
 boton3.pack()
 
 #Reportes:
 
-boton4 = Button(root, text="Reportes")
+boton4 = Button(root, text="Reportes", bg= "green")
 boton4.pack()
 
 #Salida del programa
-boton5 = Button(root, text="cerra2", command=root.iconify)
-boton5.pack()
+#boton5 = Button(root, text="cerra2", command=root.iconify)
+#boton5.pack()
 
 root.mainloop()
