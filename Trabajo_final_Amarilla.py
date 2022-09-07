@@ -7,14 +7,12 @@ import string
 from tkinter import *
 from tkinter.ttk import *
 from tkinter.messagebox import showerror, showinfo
-from webbrowser import BackgroundBrowser
 
 #Variables globales para utilizar los contadores de altas y bajas de trabajadores.
 lista_altas=[]
 lista_bajas=[]
 suma_altas=int(0)
 suma_bajas=int(0)
-
 
 #Interfaz gráfica, en este caso se utilizará la libreria Tkinter.
 master = Tk ()
@@ -58,6 +56,7 @@ class altas(Toplevel):
         #Botón de cancelado
         self.button_cancelar = Button(self, text="Cancelar", command=self.destroy)
         self.button_cancelar.pack(side="left")
+    
     def actualizar_datos(self):
         nombre_obtenido = self.nombre.get()
         edad_text = self.edad.get()
@@ -75,7 +74,7 @@ class altas(Toplevel):
             showerror("Campos requeridos", mensaje, parent=self)
         else:
             showinfo("Acción exitosa", "Los datos se han guardado correctamente", parent=self)
-            contadores(1)
+            contadores(1,edad_text)
             self.destroy()    
 
 #Definición del class de bajas:
@@ -110,6 +109,7 @@ class bajas (Toplevel):
         #Botón de cancelado
         self.button_cancelar = Button(self, text="Cancelar", command=self.destroy)
         self.button_cancelar.pack(side="left")
+
     def actualizar_datos(self):
         nombre_obtenido = self.nombre.get()
         motivo_obtenido = self.motivo.get()
@@ -127,23 +127,38 @@ class bajas (Toplevel):
             showerror("Campos requeridos", mensaje, parent=self)
         else:
             showinfo("Acción exitosa", "Los datos se han guardado correctamente", parent=self)
-            contadores(2)
+            contadores(2,0)
             self.destroy()    
 
 #Contador de trabajadores dados de Alta o baja
-def contadores(number):
+min_edad=[30]
+max_edad=[30]
+min_final=int(0)
+max_final=int(0)
+reporte2=str("")
+
+def contadores(number,age):
+    global reporte2
     if number == 1:
         lista_altas.append(1)
+        if int(age)>=30:
+            max_edad.append(int(age))
+        else:
+            if int(age)<=30:
+                min_edad.append(int(age))
+
+        min_final=min(min_edad)
+        max_final=max(max_edad)
+        reporte2="\nTrabajador de mayor edad: "+ str(max_final)+"\nTrabajador de menor edad: "+str(min_final)
     elif number == 2:
         lista_bajas.append(1)
     elif number == 3:
         suma_altas=sum(lista_altas)
         suma_bajas=sum(lista_bajas)
-        reporte="Cantidad de altas cargadas: "+ str(suma_altas)+"\nCantidad de bajas cargadas: "+str(suma_bajas)
-        showinfo("Reporte diario",reporte)
+        reporte="Cantidad de altas cargadas: "+ str(suma_altas)+"\nCantidad de bajas cargadas: "+str(suma_bajas)+str(reporte2)
+        showinfo("Reporte diario", reporte)
 
 #Botones a utilizar por el usuario:
-
 #Altas:
 alta= Button(master, text="Alta")
 alta.pack(side=TOP)
@@ -159,7 +174,7 @@ baja.pack(pady = 15)
 #Reportes:
 reporte= Button(master, text="Reportes")
 reporte.pack(side=TOP)
-reporte.bind("<Button>", lambda e: contadores(3))
+reporte.bind("<Button>", lambda e: contadores(3,0))
 reporte.pack(pady=15)
 
 #Salida del programa
