@@ -9,10 +9,15 @@
 #Salida= Cantidad de altas y bajas de trabajadores, minimo y máximo de edad de Altas realizadas.                                                                ##
 ##################################################################################################################################################################
 #Prueba de escritorio:                                                                                                                                          ##
+#-Selección Alta                                                                                                                                                ##
+#-Ingreso Nombre: Karen Am -Edad: 18 -DNI:38094382                                                                                                              ##
+#resultado= "Los Datos se han guardado correctamente"                                                                                                           ##
 #                                                                                                                                                               ##
-#                                                                                                                                                               ##
-#                                                                                                                                                               ##
-#                                                                                                                                                               ##
+# -Selección Reporte                                                                                                                                            ##
+#resultado=Cantidad de altas cargadas: 1                                                                                                                        ##
+#          Cantidad de bajas cargadas: 0                                                                                                                        ##        
+#          Trabajador de mayor edad: 1                                                                                                                          ##
+#          Trabajador de menor edad: 18                                                                                                                         ## 
 #                                                                                                                                                               ##
 ##################################################################################################################################################################
 from cgitb import grey
@@ -145,8 +150,9 @@ class bajas (Toplevel):
             self.destroy()    
 
 #Contador de trabajadores dados de Alta o baja
-min_edad=[30]
-max_edad=[30]
+
+min_edad=[1]
+max_edad=[1]
 min_final=int(0)
 max_final=int(0)
 reporte2=str("")
@@ -155,14 +161,21 @@ def contadores(number,age):
     global reporte2
     if number == 1:
         lista_altas.append(1)
-        if int(age)>=30:
+        minimo=30
+        maximo=31
+        if int(age)>=maximo:
             max_edad.append(int(age))
+            maximo=age
         else:
-            if int(age)<=30:
+            if int(age)<=minimo:
                 min_edad.append(int(age))
-
+                min_edad.remove(1)
+                minimo=age
+ 
         min_final=min(min_edad)
+
         max_final=max(max_edad)
+
         reporte2="\nTrabajador de mayor edad: "+ str(max_final)+"\nTrabajador de menor edad: "+str(min_final)
     elif number == 2:
         lista_bajas.append(1)
