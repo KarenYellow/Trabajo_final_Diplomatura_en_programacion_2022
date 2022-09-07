@@ -1,6 +1,20 @@
-#Trabajo final de la diplomatura en programación impulsado por la iniciativa "Mujeres Tech", en este trabajo se realizará un sistema de gestión de altas y bajas 
-#para un portal importante de busqueda de empleo.
-#Nombre: Karen Amarilla
+##################################################################################################################################################################
+#Trabajo final de la diplomatura en programación impulsado por la iniciativa "Mujeres Tech", en este trabajo se realizará un sistema de gestión de altas y bajas##
+#para un portal importante de busqueda de empleo.                                                                                                               ##
+#Nombre: Karen Amarilla                                                                                                                                         ##
+##################################################################################################################################################################
+#Análisis:                                                                                                                                                      ##
+#Datos solicitados: Nombre, Edad, DNI, motivo de baja                                                                                                           ##
+#Operaciones a realizar: Cantidad de altas y bajas de trabajadores (Sumas), Minimo y máximo de edad de las Altas realizadas(Mediante acumuladores).             ##
+#Salida= Cantidad de altas y bajas de trabajadores, minimo y máximo de edad de Altas realizadas.                                                                ##
+##################################################################################################################################################################
+#Prueba de escritorio:                                                                                                                                          ##
+#                                                                                                                                                               ##
+#                                                                                                                                                               ##
+#                                                                                                                                                               ##
+#                                                                                                                                                               ##
+#                                                                                                                                                               ##
+##################################################################################################################################################################
 from cgitb import grey
 from distutils.cmd import Command
 import string
