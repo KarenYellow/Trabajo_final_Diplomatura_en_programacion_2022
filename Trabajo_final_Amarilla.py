@@ -2,6 +2,7 @@
 #para un portal importante de busqueda de empleo.
 #Nombre: Karen Amarilla
 from cgitb import grey
+from distutils.cmd import Command
 import string
 from tkinter import *
 from tkinter.ttk import *
@@ -69,9 +70,12 @@ class altas(Toplevel):
             contadores(1)
             self.destroy()    
 
+lista_altas=[]
+lista_bajas=[]
+suma_altas=int(0)
+suma_bajas=int(0)
+
 def contadores(number):
-    lista_altas=[]
-    lista_bajas=[]
     if number == 1:
         lista_altas.append(1)
     elif number == 2:
@@ -82,18 +86,6 @@ def contadores(number):
         reporte="Cantidad de altas cargadas: "+ str(suma_altas)+"\nCantidad de bajas cargadas: "+str(suma_bajas)
         print(reporte)
 
-
-class reportes(Toplevel):
-
-    def __init__(self,master = None):
-        super().__init__(master = master)
-        self.title("Reporte de datos")
-        self.resizable(0,0)
-        self.grab_set()  
-        contadores(3) 
-        
-    
-    
 #Botones a utilizar por el usuario:
 
 #Altas:
@@ -102,7 +94,6 @@ alta.pack(side=TOP)
 alta.bind("<Button>", lambda e: altas(master))
 alta.pack(pady = 10)
 
-
 #Bajas:
 #boton2 = Button(root, text="Baja", bd=35, bg= "blue")
 #boton2.pack()
@@ -110,8 +101,9 @@ alta.pack(pady = 10)
 #Reportes:
 reporte= Button(master, text="Reportes")
 reporte.pack(side=TOP)
-reporte.bind("<Button>", lambda e: reportes(master))
-reporte.pack (pady=20)
+reporte.bind("<Button>", lambda e: contadores(3))
+reporte.pack(pady=20)
+
 
 #Salida del programa
 #boton4 = Button(root, text="Salir", bd=35, bg= "lightblue", command=root.quit)
