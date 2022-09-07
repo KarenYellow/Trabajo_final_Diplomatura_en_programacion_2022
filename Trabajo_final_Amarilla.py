@@ -10,15 +10,15 @@ from tkinter.messagebox import showerror, showinfo
 
 #Interfaz gráfica, en este caso se utilizará la libreria Tkinter.
 master = Tk ()
-master.config(background="lightblue")
+master.config(background="lightpink")
 master.title("SIGB - Sistema de Gestión de Bumeran ")
 master.geometry("400x200")
 master.resizable(0,0)
 #Mensaje inicial
 label1= Label (master, text="Bienvenido al Sistema de Gestión de Bumeran en Argentina")
-label1.pack()
+label1.pack(pady=5)
 
-#Funciones de cada boton:
+#Alta:
 
 class altas(Toplevel):
 
@@ -26,7 +26,7 @@ class altas(Toplevel):
         super().__init__(master = master)
         self.title("Altas de usuario")
         self.resizable(0,0)
-        self.grab_set()
+        self.grab_set()     
         nombre = ""
         edad = ""
         self.nombre = Label(self, text="Nombre y apellido: ")
@@ -54,14 +54,17 @@ class altas(Toplevel):
         
         nombre = self.nombre.get()
         edad_text = self.edad.get()
+        dni_text = self.dni.get ()
 
-        nombre_edad_requerido = (nombre.isspace() or nombre == "") and (edad_text.isspace() or edad_text == "")
+        nombre_edad_dni_requerido = (nombre.isspace() or nombre == "") and (edad_text.isspace() or edad_text == "") and (dni_text.isspace() or dni_text== "")
 
-        nombre_requerido = (nombre.isspace() and not edad_text.isspace()) or (nombre == "" and edad_text != "") or (not nombre.isalpha)
+        nombre_requerido = (nombre.isspace() and not edad_text.isspace() and not dni_text.isspace()) or (nombre == "" and edad_text != "" and dni_text!= "") or (not nombre.isalpha())
 
-        edad_requerido = (not nombre.isspace() and edad_text.isspace()) or (nombre != "" and edad_text == "") or (nombre != "" and edad_text<=str (17) or edad_text< str (100))
+        edad_requerido = (not nombre.isspace() and edad_text.isspace()) or (nombre != "" and edad_text == "") or (nombre != "" and edad_text<=str (17) or edad_text< str (100)) or (not edad_text.isdigit())
 
-        mensaje = "Debe ingresar nombre, apellido y edad" if nombre_edad_requerido else "Debe ingresar nombre y apellido (Revisar datos ingresados)" if nombre_requerido else "Debe ingresar edad o ingresar edad correcta (Mayor a 18 años / Menor de 100 años)" if edad_requerido else None
+        dni_requerido = (dni_text.isspace() and not edad_text.isspace() and not nombre.isspace()) or (nombre!="" and edad_text!="" and dni_text=="") or (not dni_text.isdigit()) 
+
+        mensaje = "Ingresar nombre, apellido, edad y DNI" if nombre_edad_dni_requerido else "Debe ingresar nombre y apellido (Revisar datos ingresados)" if nombre_requerido else "Debe ingresar edad o ingresar edad correcta (Mayor a 18 años / Menor de 100 años)" if edad_requerido else "Debe ingresar D.N.I. caso contrario revisar datos ingresados(Solo números)" if dni_requerido else None
         
         if mensaje:
             showerror("Campos requeridos", mensaje, parent=self)
@@ -70,6 +73,8 @@ class altas(Toplevel):
             contadores(1)
             self.destroy()    
 
+
+#Variables globales para utilizar los contadores de altas y bajas de trabajadores.
 lista_altas=[]
 lista_bajas=[]
 suma_altas=int(0)
@@ -84,7 +89,7 @@ def contadores(number):
         suma_altas=sum(lista_altas)
         suma_bajas=sum(lista_bajas)
         reporte="Cantidad de altas cargadas: "+ str(suma_altas)+"\nCantidad de bajas cargadas: "+str(suma_bajas)
-        print(reporte)
+        showinfo("Reporte diario",reporte)
 
 #Botones a utilizar por el usuario:
 
@@ -92,7 +97,7 @@ def contadores(number):
 alta= Button(master, text="Alta")
 alta.pack(side=TOP)
 alta.bind("<Button>", lambda e: altas(master))
-alta.pack(pady = 10)
+alta.pack(pady = 15)
 
 #Bajas:
 #boton2 = Button(root, text="Baja", bd=35, bg= "blue")
@@ -102,12 +107,12 @@ alta.pack(pady = 10)
 reporte= Button(master, text="Reportes")
 reporte.pack(side=TOP)
 reporte.bind("<Button>", lambda e: contadores(3))
-reporte.pack(pady=20)
+reporte.pack(pady=15)
 
 
 #Salida del programa
-#boton4 = Button(root, text="Salir", bd=35, bg= "lightblue", command=root.quit)
-#boton4.pack()
+boton4 = Button(master, text="Salir", command=master.quit)
+boton4.pack(pady=15)
 
 
 mainloop()
